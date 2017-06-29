@@ -42,6 +42,7 @@ import javafx.beans.property.ReadOnlySetWrapper;
 import javafx.beans.property.SetProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -188,6 +189,23 @@ public class JavaFXValueExtractorsTest extends AbstractTCKTest {
 
 		public static ListPropertyEntity invalidListElement() {
 			return new ListPropertyEntity( FXCollections.observableArrayList( "app", "pear", "cherry" ) );
+		}
+	}
+
+	public static class ListOfStringPropertyEntity {
+
+		private final ListProperty<@Size(min = 4) StringProperty> listProperty;
+
+		private ListOfStringPropertyEntity(ObservableList<StringProperty> innerList) {
+			this.listProperty = new SimpleListProperty<>( innerList );
+		}
+
+		public static ListOfStringPropertyEntity valid() {
+			return new ListOfStringPropertyEntity( FXCollections.observableArrayList( new SimpleStringProperty( "Billy", "Bruce" ) ) );
+		}
+
+		public static ListOfStringPropertyEntity invalidListElement() {
+			return new ListOfStringPropertyEntity( FXCollections.observableArrayList( new SimpleStringProperty( "Billy", "Bob" ) ) );
 		}
 	}
 
