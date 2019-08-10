@@ -46,6 +46,7 @@ public class ValidationRequirementTest extends AbstractTCKTest {
 	@SpecAssertion(section = Sections.CONSTRAINTDECLARATIONVALIDATIONPROCESS_REQUIREMENTS_OBJECTVALIDATION, id = "a")
 	@SpecAssertion(section = Sections.CONSTRAINTDECLARATIONVALIDATIONPROCESS_REQUIREMENTS_OBJECTVALIDATION, id = "b")
 	public void testClassLevelConstraints() {
+		System.out.println( "BV Code source: " + Validator.class.getProtectionDomain().getCodeSource() );
 		Woman sarah = new Woman();
 		sarah.setFirstName( "Sarah" );
 		sarah.setLastName( "Jones" );
